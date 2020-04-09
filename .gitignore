@@ -3,3 +3,4 @@ composer.lock
 /.idea/
 /test/config
 /test/runtime
+/runtime
