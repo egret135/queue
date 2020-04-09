@@ -1,9 +1,10 @@
 {
     "name": "egret/queue",
-    "type": "project",
+    "type": "library",
+    "description": "swoole pool mq",
     "license": "MIT",
     "minimum-stability": "stable",
-    "keywords": ["queue"],
+    "keywords": ["queue", "kafka", "redis", "mq", "messaging", "swoole", "pool"],
     "authors": [
         {
             "name": "bailu",
