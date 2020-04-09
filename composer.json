@@ -1,0 +1,44 @@
+{
+    "name": "egret/queue",
+    "authors": [
+        {
+            "name": "bailu",
+            "email": "shadow_12138@163.com"
+        }
+    ],
+    "require": {
+        "php": "^7.1.3",
+        "ext-swoole": "^2.0 || ^3.0 || ^4.0",
+        "monolog/monolog": "^1.0",
+        "enqueue/rdkafka": "^0.10",
+        "ext-rdkafka": "^3.0",
+        "enqueue/redis": "^0.10",
+        "symfony/console": "^5.0",
+        "predis/predis": "^1.1",
+        "guzzlehttp/guzzle": "^6.5",
+        "ext-posix": "*",
+        "ext-pcntl": "*"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^7.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "Egret\\Queue\\": "src"
+        },
+        "files": [
+            "src/helpers.php"
+        ]
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Egret\\Queue\\Test\\": "test"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "bin": [
+        "queue"
+    ]
+}
