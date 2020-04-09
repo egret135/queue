@@ -40,21 +40,18 @@ include COMPOSER_INSTALL;
  * is test code.
  */
 $path = [
-    './app',
-    './src',
-    './application',
-    './test',
-    '../app',
-    '../src',
-    '../application',
-    '../test',
-    getcwd()
+    '/../../..',
+    '/../../../app',
+    '/../../../src',
+    '/../../../application',
+    '/.',
+    '/test'
 ];
 
 $class = [];
 foreach ($path as $item) {
-    if (file_exists($item . '/console.php')) {
-        $data = include $item . '/console.php';
+    if (file_exists(__DIR__ . $item . '/console.php')) {
+        $data = include __DIR__ . $item . '/console.php';
         if (is_array($data)) {
             $class = array_merge($class, $data);
         }
