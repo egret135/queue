@@ -196,3 +196,80 @@ $kafkaConf = [
 ];
 (new KafkaQueue($kafkaConf, $topic))->produce($job);
 ```
+
+到这里就完成了队列的生产者和消费者的创建了，还差一个步骤就是把消费者加入到queue命令行中，用命令便可以启动和管理
+
+此处采用文件加载的方式，使用的时候可以在composer.json同级的目录，或者同级的app或者application亦或者src目录下创建console.php，内容示例如下：
+
+```php
+<?php
+
+use Egret\Queue\Test\TestConsumer;
+use Egret\Queue\Test\TestCustomErrorQueue;
+use Egret\Queue\Test\TestDingTalkQueue;
+use Egret\Queue\Test\TestKafkaQueue;
+use Egret\Queue\Test\TestLoggerQueue;
+use Egret\Queue\Test\TestRedisQueue;
+
+return [
+    TestDingTalkQueue::class,
+    TestKafkaQueue::class,
+    TestLoggerQueue::class,
+    TestRedisQueue::class,
+    TestConsumer::class,
+    TestCustomErrorQueue::class,
+
+];
+```
+
+必须把console.php存放到指定的几个地方之一，不然读取不到，文件存放位置示例：
+
+```shell script
+-- 项目demo  
+　　-- app文件夹  
+　　　　-- 可在app文件夹下创建console.php  
+　　-- application文件夹   
+　　　　-- 可在application文件夹下创建console.php  
+　　-- src文件夹   
+　　　　-- 可在src文件夹下创建console.php  
+　　-- vendor  
+　　-- 可在这一层目录下创建console.php  
+　　-- composer.json  
+　　-- composer.lock
+```
+
+创建完后执行./queue便可以看到相关的队列了
+
+```shell script
+./queue
+
+________                               
+\_____  \  __ __   ____  __ __   ____  
+ /  / \  \|  |  \_/ __ \|  |  \_/ __ \ 
+/   \_/.  \  |  /\  ___/|  |  /\  ___/ 
+\_____\ \_/____/  \___  >____/  \___  >
+       \__>           \/            \/ 
+                                            v1.0.0                                                                   
+
+Usage:
+  command [options] [arguments]
+
+Options:
+  -h, --help            Display this help message
+  -q, --quiet           Do not output any message
+  -V, --version         Display this application version
+      --ansi            Force ANSI output
+      --no-ansi         Disable ANSI output
+  -n, --no-interaction  Do not ask any interactive question
+  -v|vv|vvv, --verbose  Increase the verbosity of messages: 1 for normal output, 2 for more verbose output and 3 for debug
+
+Available commands:
+  consumer  队列生产者
+  dingtalk  测试钉钉报警
+  error     设置自定义的错误处理
+  help      Displays help for a command
+  kafka     测试kafka队列
+  list      Lists commands
+  logger    测试monolog日志
+  redis     测试redis队列
+```

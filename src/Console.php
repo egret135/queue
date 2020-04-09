@@ -9,12 +9,18 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 class Console extends Symfony
 {
-    public $version = '1.0.0';
+    public $version = 'v1.0.0';
 
     public function __construct($class)
     {
         parent::__construct(<<<EOF
-            <info>{$this->version}</info>                                                                   
+________                               
+\_____  \  __ __   ____  __ __   ____  
+ /  / \  \|  |  \_/ __ \|  |  \_/ __ \ 
+/   \_/.  \  |  /\  ___/|  |  /\  ___/ 
+\_____\ \_/____/  \___  >____/  \___  >
+       \__>           \/            \/ 
+                                            <info>{$this->version}</info>                                                                   
 EOF
         );
 
