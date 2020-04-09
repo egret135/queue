@@ -18,23 +18,25 @@ redis队列的使用需要有一个redis的操作包，这里指定了predis
 
 建议在composer.json里加上
 
-```
-"require": {
-    xxxxxx,
-    "egret/queue": "^1.0"
-},
-"config": {
-    "bin-dir": "bin"
+```json
+{
+    "require": {
+        xxxxxx,
+        "egret/queue": "^1.0"
+    },
+    "config": {
+        "bin-dir": "bin"
+    }
 }
 ```
 
-```
+```shell script
 composer update egret/queue
 ```
 
 当然也可以直接composer require，但是这样可执行文件就不会放到跟composer.json同级的bin目录下，比较难找
 
-```
+```shell script
 composer require egret/queue
 ```
 
@@ -102,7 +104,7 @@ class TestRedisQueue extends AbstractQueueCommand
 
 启动队列命令
 
-```
+```shell script
 ./queue 队列别名 start topic名称(redis的键/kafka的topic)
 
 Options:
@@ -120,7 +122,7 @@ Options:
 
 查看队列
 
-```
+```shell script
 ./queue redis status
 
 Queue: redis
@@ -136,7 +138,7 @@ PID file: /queue-redis.pid, PID: 0
 
 停止队列，需要有PID文件才可以
 
-```
+```shell script
 ./queue redis stop
 ```
 
@@ -173,14 +175,14 @@ class TestJob extends AbstractJob
 
 Redis生产者代码
 
-```
+```php
 $job = new TestJob($this->getName(), false);
 (new RedisQueue($redisConf, $topic))->produce($job);
 ```
 
 Kafka生产者代码
 
-```
+```php
 $job = new TestJob($this->getName(), false);
 $kafkaConf = [
      'global' => [
