@@ -1,5 +1,9 @@
 {
     "name": "egret/queue",
+    "type": "project",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "keywords": ["queue"],
     "authors": [
         {
             "name": "bailu",
