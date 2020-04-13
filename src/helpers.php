@@ -4,7 +4,7 @@
  * @param $keyword
  * @return bool
  */
-function process_is_running($keyword)
+function process_running($keyword)
 {
     $command = "ps axu | grep '{$keyword}' | grep -v grep";
 
@@ -20,7 +20,7 @@ function process_is_running($keyword)
  * @param int $signo
  * @return int
  */
-function process_kill($pid, $signo = SIGTERM)
+function kill_process($pid, $signo = SIGTERM)
 {
     return swoole_process::kill($pid, $signo);
 }

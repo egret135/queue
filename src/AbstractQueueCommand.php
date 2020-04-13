@@ -4,7 +4,6 @@
 namespace Egret\Queue;
 
 use Closure;
-use FastD\Swoole\Server;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Helper\Table;
 use Symfony\Component\Console\Input\InputArgument;
@@ -81,7 +80,7 @@ abstract class AbstractQueueCommand extends Command
         if (file_exists($pidFile)) {
             return posix_kill(file_get_contents($pidFile), 0);
         }
-        return process_is_running("queue {$this->getName()} start");
+        return process_running("queue {$this->getName()} start");
     }
 
     protected function start(InputInterface $input, OutputInterface $output)
@@ -127,7 +126,7 @@ abstract class AbstractQueueCommand extends Command
         }
 
         $pid = (int) @file_get_contents($this->getPidFile());
-        if (process_kill($pid, SIGTERM)) {
+        if (kill_process($pid, SIGTERM)) {
             unlink($this->getPidFile());
         }
 

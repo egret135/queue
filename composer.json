@@ -24,9 +24,6 @@
         "ext-posix": "*",
         "ext-pcntl": "*"
     },
-    "require-dev": {
-        "phpunit/phpunit": "^7.0"
-    },
     "autoload": {
         "psr-4": {
             "Egret\\Queue\\": "src"
